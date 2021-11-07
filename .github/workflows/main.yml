@@ -25,7 +25,13 @@ jobs:
         with:
           java-version: 11
           distribution: adopt
+          
       - name: Maven Package
         run: mvn -B clean package -DskipTests
+        env:
+          SPRING_PROFILES_ACTIVE: dev
+
       - name: Maven Verify
         run: mvn -B clean verify
+        env:
+          SPRING_PROFILES_ACTIVE: dev
