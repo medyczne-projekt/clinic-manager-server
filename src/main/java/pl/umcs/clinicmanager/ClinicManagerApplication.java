@@ -13,9 +13,4 @@ public class ClinicManagerApplication {
 		SpringApplication.run(ClinicManagerApplication.class, args);
 	}
 
-	@GetMapping("/")
-	public String hello() {
-		return "Hello World!";
-	}
-
 }
