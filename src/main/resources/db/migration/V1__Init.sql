@@ -38,6 +38,11 @@ CREATE TABLE receipts(
     doctor_id BIGINT REFERENCES user_details(id)
 );
 
+CREATE SEQUENCE user_details_sequence START 5;
+CREATE SEQUENCE user_sequence START 5;
+CREATE SEQUENCE medical_visits_sequence START 5;
+CREATE SEQUENCE receipts_sequence START 5;
+
 -- Initial data (to be dropped later!!!)
 INSERT INTO user_details (first_name, last_name, gender, email, country, city, street, postal_code, date_of_birth)
     VALUES ('Jan', 'Kowalski', 'MALE', 'jan.kowalski@gmail.com', 'Poland', 'Lublin', 'Hetmańska 2', '20-234', DATE '1988-01-09');
