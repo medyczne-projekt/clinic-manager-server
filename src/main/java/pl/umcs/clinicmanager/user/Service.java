@@ -55,9 +55,9 @@ public class Service {
     public void updateUser(Long id, UserDTO changedUser) {
         Optional<User> userOptional = userRepository.findById(id);
         userOptional.ifPresentOrElse(user -> {
-            user.setFirstName(changedUser.getUser_firstName());
-            user.setEmail(changedUser.getUser_email());
-            user.setLastName(changedUser.getUser_lastName());
+            user.setUsername(changedUser.getUser_username());
+            user.setPassword(changedUser.getUser_password());
+            user.setUserDetails(mapper.DtoToEntity(changedUser.getUser_userDetails()));
             userRepository.save(userOptional.get());
         }, NoSuchElementException::new);
 

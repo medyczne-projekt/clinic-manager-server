@@ -13,16 +13,30 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity()
-@Table(name = "user_table")
+@Table(name = "users")
 public class User {
-
-
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            name = "user_sequence",
+            sequenceName = "user_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "user_sequence"
+    )
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
+    private String username;
+    private String password;
+    @OneToOne(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    @JoinColumn(
+            name = "user_details_id",
+            referencedColumnName = "id"
+    )
+    private UserDetails userDetails;
 
 
     @Enumerated(EnumType.STRING)

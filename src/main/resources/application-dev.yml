@@ -1,0 +1,7 @@
+---
+spring:
+  datasource:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate

@@ -10,6 +10,4 @@ import java.util.List;
 @org.springframework.stereotype.Repository
 public interface Repository extends JpaRepository<User, Long> {
 
-
-
 }
