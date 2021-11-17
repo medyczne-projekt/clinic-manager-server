@@ -6,7 +6,7 @@ spring:
     password: ${DATABASE_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
   jpa:
-    show-sql: false
+    show-sql: ${DATABASE_SHOW_SQL:true}
     hibernate:
       ddl-auto: validate
       naming.implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
