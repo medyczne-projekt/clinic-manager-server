@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.umcs.clinicmanager.user.domain.User;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -29,8 +30,22 @@ public class Receipt {
     private String description;
     @Column(name = "prescription_date")
     private LocalDate prescriptionDate;
-    @Column(name = "patient_id")
-    private Long patientID;
-    @Column(name = "doctor_id")
-    private Long doctorID;
+    @ManyToOne(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    @JoinColumn(
+            name = "patient_id",
+            referencedColumnName = "id"
+    )
+    private User patient;
+    @ManyToOne(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    @JoinColumn(
+            name = "doctor_id",
+            referencedColumnName = "id"
+    )
+    private User doctor;
 }

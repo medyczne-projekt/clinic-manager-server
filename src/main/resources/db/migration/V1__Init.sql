@@ -34,8 +34,8 @@ CREATE TABLE receipts(
     description TEXT NOT NULL,
     prescription_date DATE NOT NULL,
     valid_to DATE NOT NULL,
-    patient_id BIGINT REFERENCES user_details(id),
-    doctor_id BIGINT REFERENCES user_details(id)
+    patient_id BIGINT REFERENCES users(id),
+    doctor_id BIGINT REFERENCES users(id)
 );
 
 CREATE SEQUENCE user_details_sequence START 5;
