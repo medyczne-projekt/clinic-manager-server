@@ -17,7 +17,7 @@ public class ReceiptController {
     private final ReceiptService receiptService;
 
     @PostMapping("/receipt/add")
-    ResponseEntity(Receipt) addReceipt(@RequestBody ReceiptDTO newReceipt) {
+    ResponseEntity<Receipt> addReceipt(@RequestBody ReceiptDTO newReceipt) {
         final Receipt addedReceipt = receiptService.addReceipt(newReceipt);
         return new ResponseEntity<>(addedReceipt, HttpStatus.CREATED);
     }
