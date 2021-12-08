@@ -13,6 +13,7 @@ public interface ReceiptMapper {
 
     @Mapping(source = "receiptDescription", target = "description")
     @Mapping(source = "receiptPrescriptionDate", target = "prescriptionDate")
+    @Mapping(source = "receiptValidTo", target = "validTo")
     @Mapping(source = "receiptPatient", target = "patient")
     @Mapping(source = "receiptDoctor", target = "doctor")
     Receipt dtoToEntity(ReceiptDTO receipt);
@@ -20,6 +21,7 @@ public interface ReceiptMapper {
 
     @Mapping(source = "description", target = "receiptDescription")
     @Mapping(source = "prescriptionDate", target = "receiptPrescriptionDate")
+    @Mapping(source = "validTo", target = "receiptValidTo")
     @Mapping(source = "patient", target = "receiptPatient")
     @Mapping(source = "doctor", target = "receiptDoctor")
     ReceiptDTO entityToDto(Receipt receipt);

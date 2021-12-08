@@ -22,13 +22,13 @@ public class ReceiptController {
         return new ResponseEntity<>(addedReceipt, HttpStatus.CREATED);
     }
 
-    @GetMapping("/receipts/{doctorID}")
+    @GetMapping("/receipts/doctor/{doctorID}")
     ResponseEntity<List<ReceiptDTO>> getAllReceiptsByDoctorID(@PathVariable Long doctorID) {
         final List<ReceiptDTO> receipts = receiptService.getAllReceiptsByDoctorID(doctorID);
         return new ResponseEntity<>(receipts, HttpStatus.FOUND);
     }
 
-    @GetMapping("/receipts/{patientID}")
+    @GetMapping("/receipts/patient/{patientID}")
     ResponseEntity<List<ReceiptDTO>> getAllReceiptsByPatientID(@PathVariable Long patientID) {
         final List<ReceiptDTO> receipts = receiptService.getAllReceiptsByPatientID(patientID);
         return new ResponseEntity<>(receipts, HttpStatus.FOUND);

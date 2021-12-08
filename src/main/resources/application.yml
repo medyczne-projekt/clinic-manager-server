@@ -1,7 +1,7 @@
 ---
 spring:
   datasource:
-    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/clinic-manager}
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/clinic_manager}
     username: ${DATABASE_USERNAME:postgres}
     password: ${DATABASE_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
@@ -12,3 +12,8 @@ spring:
       naming.implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
       naming.physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
       dialect: hibernate.dialect.PostgreSQLDialect
+
+  jackson:
+    serialization:
+      fail-on-empty-beans:
+        false

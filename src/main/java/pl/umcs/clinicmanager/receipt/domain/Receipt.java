@@ -1,5 +1,6 @@
 package pl.umcs.clinicmanager.receipt.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,8 @@ public class Receipt {
     private String description;
     @Column(name = "prescription_date")
     private LocalDate prescriptionDate;
+    @Column(name = "valid_to")
+    private LocalDate validTo;
     @ManyToOne(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
