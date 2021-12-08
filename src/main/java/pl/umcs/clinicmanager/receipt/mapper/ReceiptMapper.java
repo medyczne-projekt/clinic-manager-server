@@ -14,16 +14,16 @@ public interface ReceiptMapper {
     @Mapping(source = "receiptDescription", target = "description")
     @Mapping(source = "receiptPrescriptionDate", target = "prescriptionDate")
     @Mapping(source = "receiptValidTo", target = "validTo")
-    @Mapping(source = "receiptPatient", target = "patient")
-    @Mapping(source = "receiptDoctor", target = "doctor")
+    @Mapping(source = "receiptPatientId", target = "patientId")
+    @Mapping(source = "receiptDoctorId", target = "doctorId")
     Receipt dtoToEntity(ReceiptDTO receipt);
 
 
     @Mapping(source = "description", target = "receiptDescription")
     @Mapping(source = "prescriptionDate", target = "receiptPrescriptionDate")
     @Mapping(source = "validTo", target = "receiptValidTo")
-    @Mapping(source = "patient", target = "receiptPatient")
-    @Mapping(source = "doctor", target = "receiptDoctor")
+    @Mapping(source = "patientId", target = "receiptPatientId")
+    @Mapping(source = "doctorId", target = "receiptDoctorId")
     ReceiptDTO entityToDto(Receipt receipt);
 
     default List<ReceiptDTO> entityListToDtoList(List<Receipt> receiptList) {

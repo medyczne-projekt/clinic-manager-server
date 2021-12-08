@@ -16,6 +16,6 @@ public class ReceiptDTO {
     private String receiptDescription;
     private LocalDate receiptPrescriptionDate;
     private LocalDate receiptValidTo;
-    private User receiptPatient;
-    private User receiptDoctor;
+    private Long receiptPatientId;
+    private Long receiptDoctorId;
 }

@@ -1,6 +1,6 @@
 package pl.umcs.clinicmanager.receipt.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,26 +29,24 @@ public class Receipt {
     )
     private Long id;
     private String description;
+
     @Column(name = "prescription_date")
     private LocalDate prescriptionDate;
+
     @Column(name = "valid_to")
     private LocalDate validTo;
-    @ManyToOne(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    @JoinColumn(
-            name = "patient_id",
-            referencedColumnName = "id"
-    )
+
+    @JoinColumn(name = "patient_id", insertable = false, updatable = false)
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+    @JsonIgnore
     private User patient;
-    @ManyToOne(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    @JoinColumn(
-            name = "doctor_id",
-            referencedColumnName = "id"
-    )
+    @Column(name = "patient_id")
+    private Long patientId;
+
+    @JoinColumn(name = "doctor_id", insertable = false, updatable = false)
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+    @JsonIgnore
     private User doctor;
+    @Column(name = "doctor_id")
+    private Long doctorId;
 }
