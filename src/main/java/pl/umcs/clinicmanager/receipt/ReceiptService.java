@@ -6,8 +6,7 @@ import org.springframework.stereotype.Service;
 import pl.umcs.clinicmanager.receipt.domain.Receipt;
 import pl.umcs.clinicmanager.receipt.dto.ReceiptDTO;
 import pl.umcs.clinicmanager.receipt.mapper.ReceiptMapper;
-import pl.umcs.clinicmanager.user.Repository;
-import pl.umcs.clinicmanager.user.domain.User;
+import pl.umcs.clinicmanager.user.UserRepository;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -18,7 +17,7 @@ import java.util.NoSuchElementException;
 public class ReceiptService {
 
     private final ReceiptRepository receiptRepository;
-    private final Repository userRepository;
+    private final UserRepository userRepository;
     private final ReceiptMapper mapper;
 
     @Transactional
