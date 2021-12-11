@@ -50,9 +50,9 @@ INSERT INTO user_details (first_name, last_name, gender, email, country, city, s
     VALUES ('Stanisław', 'Wiśniewski', 'MALE', 'stanislaw.wisniweski@gmail.com', 'Poland', 'Lublin', 'Al. Kraśnicka 128 2', '20-718', DATE '1991-10-24');
 
 INSERT INTO users (role, username, password, user_details_id)
-    VALUES ('DOCTOR', 'jan123', 'password123', 1);
+    VALUES ('DOCTOR', 'jan123', '$2a$12$kMQozeODI.ruTVWj8t/4HOgROJ65WC8IBWfKUG3eJgD3FusM0WYxe', 1);
 INSERT INTO users (role, username, password, user_details_id)
-    VALUES ('PATIENT', 'stan123', 'password123', 2);
+    VALUES ('PATIENT', 'stan123', '$2a$12$kMQozeODI.ruTVWj8t/4HOgROJ65WC8IBWfKUG3eJgD3FusM0WYxe', 2);
 
 INSERT INTO medical_visits(start_date_of_visit, end_date_of_visit, description, patient_id, doctor_id)
 VALUES ('2021-11-10 09:30:00-08', '2021-11-10 10:00:00-08', 'wizyta kontrolna', 2, 1);

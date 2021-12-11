@@ -15,11 +15,13 @@ public interface UserMapper {
 
     @Mapping(source = "user_username", target = "username")
     @Mapping(source = "user_password", target = "password")
+    @Mapping(source = "user_role", target = "role")
     @Mapping(source = "user_userDetails", target = "userDetails")
     User DtoToEntity(UserDTO user);
 
     @Mapping(source = "username", target = "user_username")
     @Mapping(source = "password", target = "user_password")
+    @Mapping(source = "role", target = "user_role")
     @Mapping(source = "userDetails", target = "user_userDetails")
     UserDTO entityToDto(User user);
 

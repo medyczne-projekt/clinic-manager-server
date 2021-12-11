@@ -14,10 +14,10 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @org.springframework.stereotype.Service
-public class Service {
+public class UserService {
 
 
-    private final Repository userRepository;
+    private final UserRepository userRepository;
     private final UserMapper mapper;
 
 
@@ -35,6 +35,12 @@ public class Service {
 
         return mapper.entityToDto(foundUser);
 
+    }
+
+    public UserDTO getUserByUsername(String username) {
+        final User foundUser = userRepository.findByUsername(username).orElseThrow(NoSuchElementException::new);
+
+        return mapper.entityToDto(foundUser);
     }
 
     public List<UserDTO> getAllUsers() {

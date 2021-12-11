@@ -12,3 +12,9 @@ spring:
       naming.implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
       naming.physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
       dialect: hibernate.dialect.PostgreSQLDialect
+
+jwt:
+  secret: ${JWT_SECRET:secret}
+  issuer: clinic-manager
+  accessTokenTimeout: ${JWT_ACCESSTOKEN_TIMEOUT:600000}    # 10 minutes in milliseconds
+  refreshTokenTimeout: ${JWT_REFRESHTOKEN_TIMEOUT:1800000} # 30 minutes in milliseconds
