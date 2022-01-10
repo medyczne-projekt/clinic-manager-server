@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.umcs.clinicmanager.medical_visit.domain.MedicalVisit;
 import pl.umcs.clinicmanager.medical_visit.dto.MedicalVisitDTO;
+import pl.umcs.clinicmanager.medical_visit.dto.MedicalVisitResponseDTO;
 import pl.umcs.clinicmanager.receipt.dto.ReceiptDTO;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/api")
 public class MedicalVisitController {
 
     private final MedicalVisitService medicalVisitService;
@@ -30,8 +32,8 @@ public class MedicalVisitController {
     }
 
     @GetMapping("/visit/patient/{patientId}")
-    ResponseEntity<List<MedicalVisitDTO>> getAllVisitsByPatientId(@PathVariable Long patientId) {
-        final List<MedicalVisitDTO> patientVisits;
+    ResponseEntity<List<MedicalVisitResponseDTO>> getAllVisitsByPatientId(@PathVariable Long patientId) {
+        final List<MedicalVisitResponseDTO> patientVisits;
         try {
             patientVisits = medicalVisitService.getAllVisitsByPatientId(patientId);
         } catch (NoSuchElementException e) {
@@ -41,8 +43,8 @@ public class MedicalVisitController {
     }
 
     @GetMapping("/visit/{id}")
-    ResponseEntity<MedicalVisitDTO> getVisitById(@PathVariable Long id) {
-        final MedicalVisitDTO visit;
+    ResponseEntity<MedicalVisitResponseDTO> getVisitById(@PathVariable Long id) {
+        final MedicalVisitResponseDTO visit;
         try {
             visit = medicalVisitService.getVisitById(id);
         } catch (NoSuchElementException e) {
@@ -54,8 +56,8 @@ public class MedicalVisitController {
 
 
     @GetMapping("/visit/doctor/{doctorId}")
-    ResponseEntity<List<MedicalVisitDTO>> getAllVisitsByDoctorId(@PathVariable Long doctorId) {
-        final List<MedicalVisitDTO> doctorVisits;
+    ResponseEntity<List<MedicalVisitResponseDTO>> getAllVisitsByDoctorId(@PathVariable Long doctorId) {
+        final List<MedicalVisitResponseDTO> doctorVisits;
         try {
             doctorVisits = medicalVisitService.getAllVisitsByDoctorId(doctorId);
         } catch (NoSuchElementException e) {
