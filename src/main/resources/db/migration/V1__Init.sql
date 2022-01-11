@@ -25,8 +25,8 @@ CREATE TABLE medical_visits(
     start_date_of_visit TIMESTAMP NOT NULL,
     end_date_of_visit TIMESTAMP NOT NULL,
     description VARCHAR(300),
-    patient_id BIGINT REFERENCES user_details(id),
-    doctor_id BIGINT REFERENCES user_details(id)
+    patient_id BIGINT REFERENCES users(id),
+    doctor_id BIGINT REFERENCES users(id)
 );
 
 CREATE TABLE receipts(
