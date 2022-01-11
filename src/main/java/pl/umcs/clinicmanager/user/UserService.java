@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.repository.Modifying;
 import pl.umcs.clinicmanager.user.domain.User;
 import pl.umcs.clinicmanager.user.dto.UserDTO;
+import pl.umcs.clinicmanager.user.dto.UserResponseDTO;
 import pl.umcs.clinicmanager.user.mapper.UserMapper;
 
 import javax.transaction.Transactional;
@@ -30,10 +31,10 @@ public class UserService {
 
     }
 
-    public UserDTO getUser(Long userId) {
+    public UserResponseDTO getUser(Long userId) {
         final User foundUser = userRepository.findById(userId).orElseThrow(NoSuchElementException::new);
 
-        return mapper.entityToDto(foundUser);
+        return mapper.entityToResponseDto(foundUser);
 
     }
 
@@ -43,11 +44,11 @@ public class UserService {
         return mapper.entityToDto(foundUser);
     }
 
-    public List<UserDTO> getAllUsers() {
+    public List<UserResponseDTO> getAllUsers() {
 
         final List<User> userList = userRepository.findAll();
 
-        return mapper.entityListToDtoList(userList);
+        return mapper.entityListToResponseDtoList(userList);
 
     }
 

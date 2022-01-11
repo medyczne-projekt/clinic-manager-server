@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import pl.umcs.clinicmanager.receipt.domain.Receipt;
 import pl.umcs.clinicmanager.receipt.dto.ReceiptDTO;
+import pl.umcs.clinicmanager.receipt.dto.ReceiptResponseDTO;
 import pl.umcs.clinicmanager.receipt.mapper.ReceiptMapper;
 import pl.umcs.clinicmanager.user.UserRepository;
 
@@ -33,23 +34,23 @@ public class ReceiptService {
     }
 
 
-    public List<ReceiptDTO> getAllReceiptsByDoctorID(Long doctorID) {
+    public List<ReceiptResponseDTO> getAllReceiptsByDoctorID(Long doctorID) {
         final List<Receipt> foundReceipts = receiptRepository.findAllByDoctorId(doctorID);
         if (foundReceipts.isEmpty()) throw new NoSuchElementException();
 
-        return mapper.entityListToDtoList(foundReceipts);
+        return mapper.entityListToResponseDtoList(foundReceipts);
     }
 
-    public List<ReceiptDTO> getAllReceiptsByPatientID(Long patientID) {
+    public List<ReceiptResponseDTO> getAllReceiptsByPatientID(Long patientID) {
         final List<Receipt> foundReceipts = receiptRepository.findAllByPatientId(patientID);
         if (foundReceipts.isEmpty()) throw new NoSuchElementException();
 
-        return mapper.entityListToDtoList(foundReceipts);
+        return mapper.entityListToResponseDtoList(foundReceipts);
     }
 
-    public ReceiptDTO getReceipt(Long id) {
+    public ReceiptResponseDTO getReceipt(Long id) {
         final Receipt foundReceipt = receiptRepository.findById(id).orElseThrow(NoSuchElementException::new);
-        return mapper.entityToDto(foundReceipt);
+        return mapper.entityToResponseDto(foundReceipt);
     }
 
     @Transactional

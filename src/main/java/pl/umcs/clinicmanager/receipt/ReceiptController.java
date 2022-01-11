@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.umcs.clinicmanager.receipt.domain.Receipt;
 import pl.umcs.clinicmanager.receipt.dto.ReceiptDTO;
+import pl.umcs.clinicmanager.receipt.dto.ReceiptResponseDTO;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -32,8 +33,8 @@ public class ReceiptController {
     }
 
     @GetMapping("/receipts/doctor/{doctorID}")
-    ResponseEntity<List<ReceiptDTO>> getAllReceiptsByDoctorID(@PathVariable Long doctorID) {
-        final List<ReceiptDTO> receipts;
+    ResponseEntity<List<ReceiptResponseDTO>> getAllReceiptsByDoctorID(@PathVariable Long doctorID) {
+        final List<ReceiptResponseDTO> receipts;
         try {
             receipts = receiptService.getAllReceiptsByDoctorID(doctorID);
         } catch (NoSuchElementException e) {
@@ -44,8 +45,8 @@ public class ReceiptController {
     }
 
     @GetMapping("/receipts/patient/{patientID}")
-    ResponseEntity<List<ReceiptDTO>> getAllReceiptsByPatientID(@PathVariable Long patientID) {
-        final List<ReceiptDTO> receipts;
+    ResponseEntity<List<ReceiptResponseDTO>> getAllReceiptsByPatientID(@PathVariable Long patientID) {
+        final List<ReceiptResponseDTO> receipts;
         try {
             receipts = receiptService.getAllReceiptsByPatientID(patientID);
         } catch (NoSuchElementException e) {
@@ -56,8 +57,8 @@ public class ReceiptController {
     }
 
     @GetMapping("/receipt/{id}")
-    ResponseEntity<ReceiptDTO> getReceiptByID(@PathVariable Long id) {
-        final ReceiptDTO receipt;
+    ResponseEntity<ReceiptResponseDTO> getReceiptByID(@PathVariable Long id) {
+        final ReceiptResponseDTO receipt;
         try {
             receipt = receiptService.getReceipt(id);
         } catch (NoSuchElementException e) {
