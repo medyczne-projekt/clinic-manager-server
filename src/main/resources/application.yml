@@ -16,5 +16,5 @@ spring:
 jwt:
   secret: ${JWT_SECRET:secret}
   issuer: clinic_manager
-  accessTokenTimeout: ${JWT_ACCESSTOKEN_TIMEOUT:600000}    # 10 minutes in milliseconds
-  refreshTokenTimeout: ${JWT_REFRESHTOKEN_TIMEOUT:1800000} # 30 minutes in milliseconds
+  accessTokenTimeout: ${JWT_ACCESSTOKEN_TIMEOUT:2700000}    # 45 minutes in milliseconds
+  refreshTokenTimeout: ${JWT_REFRESHTOKEN_TIMEOUT:432000000} # 5 days in milliseconds
