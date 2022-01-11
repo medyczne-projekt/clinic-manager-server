@@ -6,6 +6,7 @@ import pl.umcs.clinicmanager.user.domain.User;
 import pl.umcs.clinicmanager.user.domain.UserDetails;
 import pl.umcs.clinicmanager.user.dto.UserDTO;
 import pl.umcs.clinicmanager.user.dto.UserDetailsDTO;
+import pl.umcs.clinicmanager.user.dto.UserResponseDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,12 @@ public interface UserMapper {
     @Mapping(source = "role", target = "user_role")
     @Mapping(source = "userDetails", target = "user_userDetails")
     UserDTO entityToDto(User user);
+
+    @Mapping(source = "id", target = "user_id")
+    @Mapping(source = "username", target = "user_username")
+    @Mapping(source = "role", target = "user_role")
+    @Mapping(source = "userDetails", target = "user_userDetails")
+    UserResponseDTO entityToResponseDto(User user);
 
     @Mapping(source = "user_firstName", target = "firstName")
     @Mapping(source = "user_lastName", target = "lastName")
@@ -54,6 +61,18 @@ public interface UserMapper {
         List<UserDTO> mappedList = new ArrayList<>(userList.size());
         for (User user : userList) {
             mappedList.add(entityToDto(user));
+        }
+
+        return mappedList;
+    }
+
+    default List<UserResponseDTO> entityListToResponseDtoList(List<User> userList) {
+        if (userList == null) {
+            return null;
+        }
+        List<UserResponseDTO> mappedList = new ArrayList<>(userList.size());
+        for (User user : userList) {
+            mappedList.add(entityToResponseDto(user));
         }
 
         return mappedList;

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.umcs.clinicmanager.security.JwtUtil;
 import pl.umcs.clinicmanager.user.domain.User;
 import pl.umcs.clinicmanager.user.dto.UserDTO;
+import pl.umcs.clinicmanager.user.dto.UserResponseDTO;
 import pl.umcs.clinicmanager.user.mapper.UserMapper;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,15 +37,15 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    ResponseEntity<UserDTO> getUser(@PathVariable(name = "id") Long userId) {
-        UserDTO user = userService.getUser(userId);
-        return new ResponseEntity<>(user, HttpStatus.FOUND);
+    ResponseEntity<UserResponseDTO> getUser(@PathVariable(name = "id") Long userId) {
+        UserResponseDTO user = userService.getUser(userId);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @GetMapping("/users")
-    ResponseEntity<List<UserDTO>> getAllUsers() {
-        List<UserDTO> users = userService.getAllUsers();
-        return new ResponseEntity<>(users, HttpStatus.FOUND);
+    ResponseEntity<List<UserResponseDTO>> getAllUsers() {
+        List<UserResponseDTO> users = userService.getAllUsers();
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @DeleteMapping("/user/delete/{userId}")
