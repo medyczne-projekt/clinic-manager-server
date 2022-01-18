@@ -35,13 +35,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-//        httpSecurity
-//                .csrf().disable()
-//                .headers().frameOptions().disable()
-//                .and()
-//                .authorizeRequests()
-//                .antMatchers("**/**")
-//                .permitAll();
+        httpSecurity
+                .csrf().disable()
+                .headers().frameOptions().disable()
+                .and()
+                .authorizeRequests()
+                .antMatchers("**/**")
+                .permitAll();
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean(), jwtUtil);
         customAuthenticationFilter.setFilterProcessesUrl("/api/login");
 
