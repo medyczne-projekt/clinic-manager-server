@@ -15,6 +15,7 @@ import java.util.NoSuchElementException;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api")
+@CrossOrigin
 public class MedicalVisitController {
 
     private final MedicalVisitService medicalVisitService;
