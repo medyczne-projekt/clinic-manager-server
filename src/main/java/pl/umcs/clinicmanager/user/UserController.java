@@ -25,7 +25,6 @@ import static org.springframework.http.HttpStatus.FORBIDDEN;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin
 public class UserController {
     private final JwtUtil jwtUtil;
     private final UserService userService;

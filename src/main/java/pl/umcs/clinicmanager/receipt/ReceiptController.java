@@ -14,7 +14,6 @@ import java.util.NoSuchElementException;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api")
-@CrossOrigin
 public class ReceiptController {
 
     private final ReceiptService receiptService;
