@@ -11,6 +11,7 @@ import pl.umcs.clinicmanager.user.mapper.UserMapper;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -25,8 +26,9 @@ public class UserService {
     public User addUser(UserDTO newUser) {
 
         final User mapped = mapper.DtoToEntity(newUser);
-        //todo chagne the way of setting roles to user
-        mapped.setRole(Role.ADMIN);
+        if(Objects.isNull(mapped.getRole())) {
+            mapped.setRole(Role.PATIENT);
+        }
         return userRepository.save(mapped);
 
     }
