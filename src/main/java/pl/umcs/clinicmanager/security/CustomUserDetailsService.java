@@ -29,10 +29,21 @@ public class CustomUserDetailsService implements UserDetailsService {
                     throw new UsernameNotFoundException(String.format("User %s not found in the database", username));
                 });
         Collection<SimpleGrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(user.getRole().name()));
-        return new org.springframework.security.core.userdetails.User(
+        org.springframework.security.core.userdetails.User springSecurityUser = new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),
                 authorities
         );
+        CustomPrincipal customPrincipal = new CustomPrincipal(
+                springSecurityUser.getUsername(),
+                springSecurityUser.getPassword(),
+                springSecurityUser.isEnabled(),
+                springSecurityUser.isAccountNonExpired(),
+                springSecurityUser.isCredentialsNonExpired(),
+                springSecurityUser.isAccountNonLocked(),
+                springSecurityUser.getAuthorities()
+        );
+        customPrincipal.setUserId(user.getId());
+        return customPrincipal;
     }
 }

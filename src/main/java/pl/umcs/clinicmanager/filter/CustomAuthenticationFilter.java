@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import pl.umcs.clinicmanager.security.CustomPrincipal;
 import pl.umcs.clinicmanager.security.JwtUtil;
 
 import javax.servlet.FilterChain;
@@ -38,8 +39,8 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
-        String access_token = jwtUtil.createAccessTokenForPrincipal((User) authentication.getPrincipal());
-        String refresh_token = jwtUtil.createRefreshTokenForPrincipal((User) authentication.getPrincipal());
+        String access_token = jwtUtil.createAccessTokenForPrincipal((CustomPrincipal) authentication.getPrincipal());
+        String refresh_token = jwtUtil.createRefreshTokenForPrincipal((CustomPrincipal) authentication.getPrincipal());
 
         Map<String, String> tokens = new HashMap<>();
         tokens.put("access_token", access_token);

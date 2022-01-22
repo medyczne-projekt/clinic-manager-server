@@ -30,13 +30,14 @@ public class JwtUtil {
         this.jwtProperties = jwtProperties;
     }
 
-    public String createAccessTokenForPrincipal(User user) {
+    public String createAccessTokenForPrincipal(CustomPrincipal user) {
         Algorithm algorithm = Algorithm.HMAC256(jwtProperties.getSecret().getBytes());
         return JWT.create()
                 .withSubject(user.getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis() + jwtProperties.getAccessTokenTimeout().toMillis()))
                 .withIssuer(jwtProperties.getIssuer())
                 .withClaim("roles", user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
+                .withClaim("userId", user.getUserId())
                 .sign(algorithm);
     }
 
@@ -44,13 +45,14 @@ public class JwtUtil {
         Algorithm algorithm = Algorithm.HMAC256(jwtProperties.getSecret().getBytes());
         return JWT.create()
                 .withSubject(user.getUsername())
+                .withClaim("userId", user.getId())
                 .withExpiresAt(new Date(System.currentTimeMillis() + jwtProperties.getAccessTokenTimeout().toMillis()))
                 .withIssuer(jwtProperties.getIssuer())
                 .withClaim("roles", List.of(user.getRole().toString()))
                 .sign(algorithm);
     }
 
-    public String createRefreshTokenForPrincipal(User user) {
+    public String createRefreshTokenForPrincipal(CustomPrincipal user) {
         Algorithm algorithm = Algorithm.HMAC256(jwtProperties.getSecret().getBytes());
         return JWT.create()
                 .withSubject(user.getUsername())
