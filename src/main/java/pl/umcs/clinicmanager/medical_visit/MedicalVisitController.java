@@ -3,11 +3,14 @@ package pl.umcs.clinicmanager.medical_visit;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import pl.umcs.clinicmanager.medical_visit.domain.MedicalVisit;
 import pl.umcs.clinicmanager.medical_visit.dto.MedicalVisitDTO;
 import pl.umcs.clinicmanager.medical_visit.dto.MedicalVisitResponseDTO;
+import pl.umcs.clinicmanager.medical_visit.exception.InvalidVisitException;
 import pl.umcs.clinicmanager.receipt.dto.ReceiptDTO;
+import pl.umcs.clinicmanager.share.ErrorMessageResponseDTO;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -21,7 +24,7 @@ public class MedicalVisitController {
 
 
     @PostMapping("/visit/add")
-    ResponseEntity<MedicalVisit> addMedicalVisit(@RequestBody MedicalVisitDTO newMedicalVisit) {
+    ResponseEntity<MedicalVisit> addMedicalVisit(@RequestBody MedicalVisitDTO newMedicalVisit) throws InvalidVisitException {
         final MedicalVisit addedVisit;
         try {
             addedVisit = medicalVisitService.addMedicalVisit(newMedicalVisit);
@@ -74,5 +77,10 @@ public class MedicalVisitController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
+
+    @ExceptionHandler(InvalidVisitException.class)
+    public ResponseEntity<ErrorMessageResponseDTO> handleInvalidIdsException(InvalidVisitException exception) {
+        return new ResponseEntity<>(new ErrorMessageResponseDTO(exception.getLocalizedMessage()), HttpStatus.BAD_REQUEST);
     }
 }
