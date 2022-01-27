@@ -14,6 +14,7 @@ import java.time.LocalDate;
 public class ReceiptResponseDTO {
     private Long receiptId;
     private String receiptDescription;
+    private String receiptCode;
     private LocalDate receiptPrescriptionDate;
     private LocalDate receiptValidTo;
     private Long receiptPatientId;
