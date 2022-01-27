@@ -39,8 +39,6 @@ public class MedicalVisitService {
             throw new InvalidVisitException("this visit overlaps with existing");
         }
 
-        System.out.println("FOUNDED VISITS:");
-        System.out.println(foundedVisitsByTimeRange);
         return medicalVisitRepository.save(mapped);
     }
 
