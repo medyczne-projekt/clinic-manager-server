@@ -29,6 +29,7 @@ public interface ReceiptMapper {
 
     @Mapping(source = "id", target = "receiptId")
     @Mapping(source = "description", target = "receiptDescription")
+    @Mapping(source = "code", target = "receiptCode")
     @Mapping(source = "prescriptionDate", target = "receiptPrescriptionDate")
     @Mapping(source = "validTo", target = "receiptValidTo")
     @Mapping(source = "patientId", target = "receiptPatientId")

@@ -9,6 +9,7 @@ import pl.umcs.clinicmanager.user.domain.User;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.concurrent.ThreadLocalRandom;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,6 +30,7 @@ public class Receipt {
     )
     private Long id;
     private String description;
+    private String code;
 
     @Column(name = "prescription_date")
     private LocalDate prescriptionDate;
@@ -49,4 +51,9 @@ public class Receipt {
     private User doctor;
     @Column(name = "doctor_id")
     private Long doctorId;
+
+    @PrePersist
+    protected void prePersist() {
+        code = String.valueOf(ThreadLocalRandom.current().nextInt(100000, 999999));
+    }
 }
