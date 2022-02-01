@@ -2,7 +2,9 @@ package pl.umcs.clinicmanager.user;
 
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import pl.umcs.clinicmanager.user.domain.User;
 import pl.umcs.clinicmanager.user.dto.UserDTO;
 import pl.umcs.clinicmanager.user.dto.UserResponseDTO;
@@ -21,6 +23,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final UserMapper mapper;
+    private PasswordEncoder passwordEncoder;
 
 
     public User addUser(UserDTO newUser) {
@@ -29,6 +32,7 @@ public class UserService {
         if(Objects.isNull(mapped.getRole())) {
             mapped.setRole(Role.PATIENT);
         }
+        mapped.setPassword(passwordEncoder.encode(mapped.getPassword()));
         return userRepository.save(mapped);
 
     }
